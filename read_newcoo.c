@@ -33,12 +33,13 @@ coords* read_newcoo(char *filename) {
         printf("\n***   read_newcoo: file format to read is incompatible (not new-coo)");
         return NULL;
     }
-    coords *coo = init_coords(nat, boxL);
+    coords *coo = coords_init(nat, boxL);
     printf("\n*** read_newcoo: header = %7s %6d %10.6f %10.4f %10.4f",fileformat, nat, boxL.x, boxL.y, boxL.z);
 
     for(i=0;i<coo->nat;i++) {
         fgets(buffer, MAX_LEN, FP);
         sscanf(buffer, "%5d %2s %2d %lf %lf %lf\n", &(coo->at[i]->n), coo->at[i]->esymb, &(coo->at[i]->atn), &(coo->at[i]->pnt.x), &(coo->at[i]->pnt.y), &(coo->at[i]->pnt.z));
+        coo->at[i]->dist = len3D(coo->at[i]->pnt);
     }
     fclose(FP);
     return coo;

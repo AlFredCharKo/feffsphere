@@ -12,6 +12,7 @@ int pars_free(parameters *given) {
     free(given->infile);
     free(given->outfile);
     free(given->parfile);
+    free(given->cvt);
     free(given);
     return EXIT_SUCCESS;
 }

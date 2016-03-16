@@ -17,32 +17,55 @@ int main(int argc, const char * argv[]) {
         exit(EXIT_FAILURE);
     }
     
-    print_pars(pars);
     
-    coords *coo = read_newcoo(pars->infile);
-    if (coo == NULL) {
-        printf("\n***   main: read_oldcoo failed! Will exit!");
+    
+    coords *input = read_newcoo(pars->infile);
+    if (input == NULL) {
+        printf("\n***   main: read_newcoo failed! Will exit!");
         exit(EXIT_FAILURE);
     }
     
-    char *filename = append_filename(pars->outfile, ".sub", ".gnu");
-    write_gnuplot(filename, coo);
+    coords *sphere = cut_sphere(input, pars);
+    if (sphere == NULL) {
+        printf("\n***   main: cut_sphere failed! Will exit!");
+        exit(EXIT_FAILURE);
+    }
+    
+    qsort(sphere->at, sphere->nat, sizeof(atom), cmpdist);
+    
+    conv_tbl *cvt = get_noe(sphere);
+    cvt_askuser(cvt);
+    print_pars(pars);
+    
+    coords *feffcoo = convert_new2old(sphere, cvt);
+    if (feffcoo == NULL) {
+        printf("\n***   main: convert_new2old failed! Will exit!");
+        exit(EXIT_FAILURE);
+    }
+    
+    char *filename = append_filename(pars->outfile, ".sph", ".gnu");
+    write_gnuplot(filename, sphere);
     free(filename);
     
-    filename = append_filename(pars->outfile, ".sub", ".pdb");
-    write_pdb(filename, coo);
+    filename = append_filename(pars->outfile, ".sph", ".pdb");
+    write_pdb(filename, sphere);
     free(filename);
     
+/*    
+    filename = append_filename(pars->outfile, ".sph", ".pdb");
+    write_feff(FEFFINP, sphere);
+    free(filename);
+*/
     
     
     printf("\n");
     return EXIT_SUCCESS;
 }
     
-    
+/*
         //example of using bstring library to replace fgets()
     FILE fp;
     fp = fopen ( ... );
     fp = NULL;
     if (fp) b = bgets ((bNgetc) fgetc, fp, '\n');
-}
+*/

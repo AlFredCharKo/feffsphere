@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "defs.h"
+#include "mystr.h"
 
 char * handle_cmdlargs(int argc, const char *argv[]);
 

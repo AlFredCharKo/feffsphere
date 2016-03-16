@@ -8,7 +8,7 @@
 
 #include "write_pdb.h"
 
-int write_pdb(char *filename, coords*coo) {
+int write_pdb(char *filename, coords *coo) {
     FILE *FP;
     int i=0;
     

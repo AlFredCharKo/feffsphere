@@ -8,7 +8,7 @@
 
 #include "coords_helper.h"
 
-coords *init_coords(int nat, vec boxL) {
+coords *coords_init(int nat, vec boxL) {
     int i = 0;
     
     coords *given = (coords*)calloc(1, sizeof(coords));
@@ -33,6 +33,7 @@ coords *init_coords(int nat, vec boxL) {
         given->at[i]->pnt.x = 0.0;
         given->at[i]->pnt.y = 0.0;
         given->at[i]->pnt.z = 0.0;
+        given->at[i]->dist = 0.0;
     }
     given->nat = nat;
     given->boxL.x = boxL.x;
@@ -60,12 +61,7 @@ int cp_coords(const coords *source, coords *dest) {
     }
     
     for (i=0; i<source->nat; i++) {
-        dest->at[i]->n = source->at[i]->n;
-        strncpy(dest->at[i]->esymb, source->at[i]->esymb, 2);
-        dest->at[i]->atn = source->at[i]->atn;
-        dest->at[i]->pnt.x = source->at[i]->pnt.x;
-        dest->at[i]->pnt.y = source->at[i]->pnt.y;
-        dest->at[i]->pnt.z = source->at[i]->pnt.z;
+        cp_atom(source->at[i], dest->at[i], i);
     }
     
     dest->boxL.x = source->boxL.x;
@@ -93,12 +89,7 @@ int cp_ncoords(const coords *source, coords *dest, int n) {
     }
     
     for (i=0; i<n; i++) {
-        dest->at[i]->n = source->at[i]->n;
-        strncpy(dest->at[i]->esymb, source->at[i]->esymb, 2);
-        dest->at[i]->atn = source->at[i]->atn;
-        dest->at[i]->pnt.x = source->at[i]->pnt.x;
-        dest->at[i]->pnt.y = source->at[i]->pnt.y;
-        dest->at[i]->pnt.z = source->at[i]->pnt.z;
+        cp_atom(source->at[i], dest->at[i], i);
     }
     
     dest->boxL.x = source->boxL.x;
@@ -124,6 +115,7 @@ int move2center(coords *given, vec new_origin) {
         given->at[i]->pnt.x = given->at[i]->pnt.x - new_origin.x;
         given->at[i]->pnt.y = given->at[i]->pnt.y - new_origin.y;
         given->at[i]->pnt.z = given->at[i]->pnt.z - new_origin.z;
+        given->at[i]->dist = len3D(given->at[i]->pnt);
     }
     
     return EXIT_SUCCESS;
@@ -142,6 +134,7 @@ int cp_atom(const atom *source, atom *dest, int v) {
     dest->pnt.x = source->pnt.x;
     dest->pnt.y = source->pnt.y;
     dest->pnt.z = source->pnt.z;
+    dest->dist = source->dist;
         
     return EXIT_SUCCESS;
 }
@@ -156,3 +149,20 @@ int coords_free(coords *given) {
     free(given);
     return EXIT_SUCCESS;
 }
+
+double len3D_sq(vec given) {
+    return given.x * given.x + given.y * given.y + given.z * given.z;
+}
+
+double len3D(vec given) {
+    return sqrt(given.x * given.x + given.y * given.y + given.z * given.z);
+}
+
+double len2D_sq(vec given) {
+    return given.x * given.x + given.y * given.y;
+}
+
+double len2D(vec given) {
+    return sqrt(given.x * given.x + given.y * given.y);
+}
+

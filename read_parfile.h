@@ -14,6 +14,7 @@
 #include <string.h>
 #include "structs.h"
 #include "defs.h"
+#include "mystr.h"
 #include "trim.h"
 
 

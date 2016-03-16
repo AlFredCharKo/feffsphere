@@ -10,6 +10,8 @@
 #define mklatc_defs_h
 
 #define MAX_LEN 255
-#define DEFPARFILE "rancoo.par"
+#define DEFPARFILE "feffsphere.par"
+#define FEFFINP "feff.inp"
+#define START_SIZE 10
 
 #endif

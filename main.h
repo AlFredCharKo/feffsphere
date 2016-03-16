@@ -24,6 +24,11 @@
 #include "read_parfile.h"
 #include "print_pars.h"
 #include "read_newcoo.h"
+#include "cut_sphere.h"
+#include "sortybydistance.h"
+#include "conversiontable_helper.h"
+#include "count_noe.h"
+#include "convert_new2old.h"
 #include "write_gnuplot.h"
 #include "write_pdb.h"
 

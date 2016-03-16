@@ -21,6 +21,7 @@ typedef struct {
     char esymb[2];
     int atn;
     vec pnt;
+    double dist;
 } atom;
 
 typedef struct {
@@ -30,10 +31,10 @@ typedef struct {
 } coords;
 
 typedef struct {
-    char dopesymb[2];
-    int atnofdop;
-    double dopc;
-    int atn2sub;
+    int atnoat0;
+    double dia;
+    int noe;
+    void *cvt;
     char *parfile;
     char *infile;
     char *outfile;
