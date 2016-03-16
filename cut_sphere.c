@@ -14,7 +14,7 @@ coords *cut_sphere(coords *given, parameters *pars) {
         exit(EXIT_FAILURE);
     }
     
-    int r = move2center(given, given->at[pars->atnoat0]->pnt);
+    int r = move2center(given, given->at[(pars->atnoat0)-1]->pnt);
     if (r != EXIT_SUCCESS) {
         printf("\n***   cut_sphere: move2center failed! Will exit!");
         exit(EXIT_FAILURE);
@@ -22,6 +22,7 @@ coords *cut_sphere(coords *given, parameters *pars) {
     
     
     vec boxL = {.x = pars->dia, .y = pars->dia, .z = pars->dia};
+    printf("\n***   cut_sphere:natinsphere(given, pars->dia) = %03d", natinsphere(given, pars->dia));
     coords *sphere = coords_init(natinsphere(given, pars->dia), boxL);
     
         //copy all within dia (<) to sphere
@@ -38,7 +39,7 @@ coords *cut_sphere(coords *given, parameters *pars) {
 }
 
 
-int natinsphere(coords *given, int dia) {
+int natinsphere(coords *given, double dia) {
         //counts number of atomes inside (<) diameter around origin
         //use move2center prior to this function for selecting a specific atom at origin
     int j = 0;
@@ -52,7 +53,7 @@ int natinsphere(coords *given, int dia) {
 }
 
 
-int cpatinsphere(const coords *source, coords *dest, int dia) {
+int cpatinsphere(const coords *source, coords *dest, double dia) {
         //copy atomes inside (<) diameter around origin in source to dest
         //use move2center prior to this function for selecting a specific atom at origin
         //returns number of atoms copied
@@ -60,7 +61,8 @@ int cpatinsphere(const coords *source, coords *dest, int dia) {
     double rad = 0.5 * dia;                            //r = 1/2 * dia
     for (int i = 0; i < source->nat; i++) {
         if (source->at[i]->dist < rad) {
-            cp_atom(source->at[i], dest->at[j], j);
+            cp_atom(source->at[i], dest->at[j], j+1);
+                //            print_at(dest->at[j]);
             j++;
         }
     }

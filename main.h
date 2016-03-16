@@ -31,6 +31,7 @@
 #include "convert_new2old.h"
 #include "write_gnuplot.h"
 #include "write_pdb.h"
+#include "write_feff.h"
 
     //helper functions
 #include "append_filename.h"

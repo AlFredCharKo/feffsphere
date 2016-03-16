@@ -16,8 +16,8 @@
 #include "coords_helper.h"
 
 coords *cut_sphere(coords *given, parameters *pars);
-int natinsphere(coords *given, int dia);
-int cpatinsphere(const coords *source, coords *dest, int dia);
+int natinsphere(coords *given, double dia);
+int cpatinsphere(const coords *source, coords *dest, double dia);
 
 
 

@@ -13,6 +13,6 @@
 #include <stdlib.h>
 
 char *mystralloc(size_t i);
-static int snapUpSize (int i);
+int snapUpSize (int i);
 
 #endif /* defined(__feffsphere2__mystr__) */

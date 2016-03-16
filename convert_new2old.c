@@ -12,7 +12,7 @@ coords* convert_new2old(coords *given, conv_tbl *cvt) {
     coords *oldcoo = coords_init(given->nat, given->boxL);
     for (int i = 0; i < given->nat; i++) {
         oldcoo->at[i]->n = given->at[i]->n;
-        strncpy(given->at[i]->esymb, oldcoo->at[i]->esymb, 2);
+        strncpy(oldcoo->at[i]->esymb, given->at[i]->esymb, 2);
         int att = cvt_attlookup(cvt, given->at[i]->atn);
         if (att == -1) {
             printf("\n***   convert_new2old: atn=%3d not found in conversion table. Will exit.",given->at[i]->atn);

@@ -139,6 +139,11 @@ int cp_atom(const atom *source, atom *dest, int v) {
     return EXIT_SUCCESS;
 }
 
+void print_at(atom *given) {
+    printf("\nn=%d \t esymb=%2s \t atn=%d \t x=%7.4f \t y=%7.4f \t z=%7.4f \t dist=%7.4f", given->n, given->esymb, given->atn,given->pnt.x, given->pnt.y, given->pnt.z, given->dist);
+    
+}
+
 int coords_free(coords *given) {
     int i = 0;
     

@@ -26,7 +26,6 @@ conv_tbl *cvt_init(int nset) {
 //    printf("\n");
     for (i = 0; i < cvt->size1; i++) {
         for (j = 0; j < cvt->size2; j++) {
-            i++;
             *(cvt->data + (i * cvt->tda + j)) = 0;
 //            *(cvt->data + (n * cvt->tda + m)) = i;
 //            printf("n = %d m = %d memory# = %2lu pointer2element = %p\n", n, m, (n * cvt->tda) + m, cvt->data + (n * cvt->tda + m));
