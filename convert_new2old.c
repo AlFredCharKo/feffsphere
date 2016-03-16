@@ -1,6 +1,6 @@
 //
 //  convert_new2old.c
-//  newcoo2old
+//  taken from newcoo2old
 //
 //  Created by Alexander Kompch on 04.03.16.
 //  Copyright (c) 2016 Alexander Kompch. All rights reserved.
