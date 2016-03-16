@@ -15,7 +15,7 @@ char* append_filename(const char *given, const char *suffix1, const char *suffix
     b = strlen(suffix1);
     c = strlen(suffix2);
     
-    char *filename = calloc((a+b+c+1), sizeof(char));
+    char *filename = mystralloc((int)a+b+c);
     if (filename == NULL) {
         printf("\n***   append_filename: malloc for filename failed.");
         return NULL;

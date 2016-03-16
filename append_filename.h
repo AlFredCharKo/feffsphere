@@ -9,10 +9,9 @@
 #ifndef __feffsphere2__append_filename__
 #define __feffsphere2__append_filename__
 
-#include <stdio.h>
-#include <stdlib.h>
+
 #include <string.h>
-#include "structs.h"
+#include "mystr.h"
 
 char* append_filename(const char *given, const char *suffix1, const char *suffix2);
 

@@ -32,12 +32,7 @@ int main(int argc, const char * argv[]) {
     }
     
     qsort(sphere->at[0], sphere->nat, sizeof(atom), cmpdist);
-/*    printf("\nsphere->at = %p", sphere->at);
-    printf("\nsphere->at[0] = %p", sphere->at[0]);
-    printf("\nsphere->at[1] = %p", sphere->at[1]);
-    printf("\nsphere->at[1] - sphere->at[0] = %ld", sphere->at[1]-sphere->at[0]);
-    printf("\nsizeof(atom) = %lu", sizeof(atom));
-*/
+
     conv_tbl *cvt = get_noe(sphere);
     pars->cvt = cvt;
     cvt_askuser(cvt);
@@ -48,14 +43,13 @@ int main(int argc, const char * argv[]) {
         printf("\n***   main: convert_new2old failed! Will exit!");
         exit(EXIT_FAILURE);
     }
-/*
-    char *filename = append_filename(pars->outfile, ".sph", ".gnu");
-    write_gnuplot(filename, sphere);
-    free(filename);
-*/
 
     char *filename = append_filename(pars->outfile, ".feff", ".pdb");
     write_pdb(filename, sphere);
+    free(filename);
+    
+    filename = append_filename(pars->outfile, ".feff", ".coo");
+    write_coo(filename, sphere);
     free(filename);
  
     write_feff(FEFFINP, sphere);
@@ -63,6 +57,11 @@ int main(int argc, const char * argv[]) {
     
     
     printf("\n");
+    coords_free(input);
+    coords_free(sphere);
+    pars_free(pars);
+    free(parfile);
+    
     return EXIT_SUCCESS;
 }
     

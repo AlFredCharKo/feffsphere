@@ -24,9 +24,6 @@ int write_feff(char *filename, coords *coo) {
     fprintf(FP,"n \t atyp \t esymb \t X \t \t Y \t \t Z \t \t dist\n");
     for(i=0;i<coo->nat;i++) {
         fprintf(FP, "%03d %02d \t \t %2s \t %+8.3f %+8.3f %+8.3f %+8.3f\n", coo->at[i]->n, coo->at[i]->atn, coo->at[i]->esymb, coo->at[i]->pnt.x, coo->at[i]->pnt.y, coo->at[i]->pnt.z, coo->at[i]->dist);
-                
-/*                "ATOM  %5d %2s   UNK  %4d      %+-8.3f%+-8.3f%+-8.3f%-6.2f%-6.2f         %2s  \n",coo->at[i]->n,coo->at[i]->esymb,0,coo->at[i]->pnt.x, coo->at[i]->pnt.y, coo->at[i]->pnt.z,1.0,0.0,coo->at[i]->esymb);
-*/
     }
     
     fclose(FP);

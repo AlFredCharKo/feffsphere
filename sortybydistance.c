@@ -9,6 +9,7 @@
 #include "sortybydistance.h"
 
 int cmpdist(const void *a, const void *b) {
+        //sorting in increasing distance
     atom *one = (atom *)a;
     atom *two = (atom *)b;
     

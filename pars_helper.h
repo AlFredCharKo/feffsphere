@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "structs.h"
+#include "conversiontable_helper.h"
 
 int pars_free(parameters *given);
 
