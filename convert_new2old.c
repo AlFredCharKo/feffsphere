@@ -22,6 +22,7 @@ coords* convert_new2old(coords *given, conv_tbl *cvt) {
         oldcoo->at[i]->pnt.x = given->at[i]->pnt.x;
         oldcoo->at[i]->pnt.y = given->at[i]->pnt.y;
         oldcoo->at[i]->pnt.z = given->at[i]->pnt.z;
+        oldcoo->at[i]->dist = given->at[i]->dist;
     }
     return oldcoo;
 }

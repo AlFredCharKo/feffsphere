@@ -52,7 +52,7 @@ int main(int argc, const char * argv[]) {
     write_coo(filename, sphere);
     free(filename);
  
-    write_feff(FEFFINP, sphere);
+    write_feff(FEFFINP, feffcoo);
 
     
     

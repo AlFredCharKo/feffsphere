@@ -4,7 +4,13 @@
 //
 //  Created by Alexander Kompch on 15.03.16.
 //  Copyright (c) 2016 Alexander Kompch. All rights reserved.
-//
+//  taken from bstrlib
+/*
+ * which is part of the bstring string library.  This code was
+ * written by Paul Hsieh in 2002-2015, and is covered by the BSD open source
+ * license and the GPL. Refer to the accompanying documentation for details
+ * on usage and license.
+ */
 
 #include "mystr.h"
 
